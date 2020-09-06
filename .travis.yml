@@ -1,0 +1,13 @@
+# Tell Travis we need docker
+sudo: required
+language: generic
+services:
+        - docker
+
+before_install:
+        - docker build -t docker-react-test -f Dockerfile.dev .
+
+script:
+        - docker run -e CI=true docker-react-test npm run test 
+        
+
